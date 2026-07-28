@@ -76,9 +76,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="_ViewModel\ListadoDeClientesViewModel.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="_View\BuscarClientePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
