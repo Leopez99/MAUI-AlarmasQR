@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MAUI_AlarmasQR.MainPage">
+
+    <VerticalStackLayout Padding="30,60,30,0" Spacing="0">
+
+        <Label 
+            Text="Reporte de alarma QR"
+            FontSize="26"
+            FontAttributes="Bold"
+            VerticalOptions="Center"
+            Margin="0,0,0,60" />
+
+        <VerticalStackLayout Spacing="20" VerticalOptions="Center">
+
+            <Border
+    BackgroundColor="Black"
+    StrokeShape="RoundRectangle 12"
+    WidthRequest="200"
+    HeightRequest="180">
+
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnCrearAlarmaClicked"/>
+                </Border.GestureRecognizers>
+
+                <Label
+        Text="CREAR ALARMA&#10;(Admin)"
+        TextColor="White"
+        HorizontalTextAlignment="Center"
+        VerticalTextAlignment="Center"
+        HorizontalOptions="Center"
+        VerticalOptions="Center"/>
+            </Border>
+
+            <Button Text="COMENZAR&#10;MANTENIMIENTO"
+                    BackgroundColor="Black"
+                    TextColor="White"
+                    CornerRadius="12"
+                    WidthRequest="200"
+                    HeightRequest="180"
+                    Clicked="OnComenzarMantenimientoClicked" />
+
+        </VerticalStackLayout>
+
+    </VerticalStackLayout>
+
+</ContentPage>
