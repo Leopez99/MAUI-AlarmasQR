@@ -76,7 +76,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="_View\CrearCliente.xaml.cs">
+	    <DependentUpon>CrearCliente.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="_View\BuscarClientePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="_View\CrearCliente.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
