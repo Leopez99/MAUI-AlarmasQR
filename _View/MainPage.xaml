@@ -15,31 +15,42 @@
         <VerticalStackLayout Spacing="20" VerticalOptions="Center">
 
             <Border
-    BackgroundColor="Black"
-    StrokeShape="RoundRectangle 12"
-    WidthRequest="200"
-    HeightRequest="180">
+                BackgroundColor="Black"
+                StrokeShape="RoundRectangle 12"
+                WidthRequest="200"
+                HeightRequest="180">
 
                 <Border.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnCrearAlarmaClicked"/>
                 </Border.GestureRecognizers>
 
                 <Label
-        Text="CREAR ALARMA&#10;(Admin)"
-        TextColor="White"
-        HorizontalTextAlignment="Center"
-        VerticalTextAlignment="Center"
-        HorizontalOptions="Center"
-        VerticalOptions="Center"/>
+                    Text="CREAR ALARMA&#10;(Admin)"
+                    TextColor="White"
+                    HorizontalTextAlignment="Center"
+                    VerticalTextAlignment="Center"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"/>
             </Border>
 
-            <Button Text="COMENZAR&#10;MANTENIMIENTO"
-                    BackgroundColor="Black"
+            <Border
+                BackgroundColor="Black"
+                StrokeShape="RoundRectangle 12"
+                WidthRequest="200"
+                HeightRequest="180">
+
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnComenzarMantenimientoClicked"/>
+                </Border.GestureRecognizers>
+
+                <Label
+                    Text="COMENZAR&#10;MANTENIMIENTO"
                     TextColor="White"
-                    CornerRadius="12"
-                    WidthRequest="200"
-                    HeightRequest="180"
-                    Clicked="OnComenzarMantenimientoClicked" />
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    VerticalTextAlignment="Center"/>
+            </Border>
 
         </VerticalStackLayout>
 
