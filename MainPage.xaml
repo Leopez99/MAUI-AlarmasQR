@@ -1,7 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MAUI_AlarmasQR.MainPage">
+             xmlns:viewModels="clr-namespace:MAUI_AlarmasQR._ViewModel"
+             x:Class="MAUI_AlarmasQR.MainPage"
+             x:DataType="viewModels:MainViewModel"
+             >
 
     <ScrollView>
         <VerticalStackLayout
@@ -25,11 +28,9 @@
                 SemanticProperties.Description="Welcome to dot net Multi platform App U I" />
 
             <Button
-                x:Name="CounterBtn"
-                Text="Click me" 
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Fill" />
+                Text="{Binding CounterButton.Text}"
+                Command="{Binding CounterButton.ClickCommand}"
+                HorizontalOptions="Fill"/>
         </VerticalStackLayout>
     </ScrollView>
 
