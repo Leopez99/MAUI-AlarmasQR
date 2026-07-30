@@ -35,7 +35,7 @@
 
                     <Grid Padding="10">
                         <Label
-                            Text="{Binding nombre}"
+                            Text="{Binding Nombre}"
                             FontSize="18" />
                     </Grid>
 

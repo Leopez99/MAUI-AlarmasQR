@@ -17,12 +17,12 @@ namespace MAUI_AlarmasQR._ViewModel
         [RelayCommand]
         private void AgregarCliente()
         {
-            if (string.IsNullOrWhiteSpace(NombreCliente))
+            if (string.IsNullOrWhiteSpace(nombreCliente))
                 return;
 
             Cliente cl = new Cliente(nombreCliente);
             ListaDeClientes.Add(cl);
-            NombreCliente = string.Empty;
+            nombreCliente = cl.Nombre;
         }
     }
 }
