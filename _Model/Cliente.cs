@@ -11,12 +11,12 @@ namespace MAUI_AlarmasQR._Model
         public string Nombre {  get; private set; }
         //public string registroDeMatenimientos { get; private set; } - Esto va a ser una coleccion de los distintos PDF que se fueron exportando de este cliente
 
-        public List<Alarma> Alarmas { get; private set; }
+        public List<Piso> Pisos { get; private set; }
 
         public Cliente(string Nombre)
         {
             this.Nombre = Nombre;
-            this.Alarmas = new List<Alarma>();   
+            this.Pisos = new List<Piso>();
         }
 
     }

@@ -6,12 +6,20 @@ namespace MAUI_AlarmasQR._Model.AlarmaModel
 {
     public class Alarma
     {
-        public string Nombre {  get; set; }
-        public List<Piso> Pisos { get; set; }
+        public string Nombre { get; set; }
+        public bool Funciona { get; private set; }
+        public string NotaAdicional { get; set; }
+
         public Alarma(string Nombre)
         {
-            this.Pisos = new List<Piso>(); 
             this.Nombre = Nombre;
+            this.Funciona = false;
+            this.NotaAdicional = String.Empty;
+        }
+
+        public bool checkear()
+        {
+            return !this.Funciona;
         }
     }
 }
