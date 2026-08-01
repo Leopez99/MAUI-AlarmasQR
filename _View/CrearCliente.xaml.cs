@@ -3,14 +3,13 @@ using MAUI_AlarmasQR._Model;
 using MAUI_AlarmasQR._ViewModel;
 using System.Collections.ObjectModel;
 
-namespace MAUI_AlarmasQR._View
+namespace MAUI_AlarmasQR._View;
+
+public partial class CrearCliente : ContentPage
 {
-    public partial class CrearCliente : ContentPage
+    public CrearCliente()
     {
-        public CrearCliente()
-        {
-            InitializeComponent();
-            BindingContext = new CrearClienteViewModel();
-        }
+        InitializeComponent();
+        BindingContext = new CrearClienteViewModel();
     }
 }

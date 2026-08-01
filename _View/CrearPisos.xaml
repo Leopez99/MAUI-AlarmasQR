@@ -1,64 +1,118 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MAUI_AlarmasQR._ViewModel"
+             xmlns:model="clr-namespace:MAUI_AlarmasQR._Model.AlarmaModel"
              x:Class="MAUI_AlarmasQR._View.CrearPisos"
+             x:Name="page"
+             x:DataType="vm:CrearPisoViewModel"
              Title="Cliente">
 
     <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
 
-        <VerticalStackLayout
-            Padding="20"
-            Spacing="20">
+            <!-- Título principal: nombre del cliente -->
+            <Label Text="{Binding cliente.Nombre}"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
 
-            <!-- Título -->
+            <!-- Sección PISOS -->
             <Label Text="PISOS"
-                   FontSize="26"
-                   FontAttributes="Bold"/>
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="#5B4FE9" />
 
-            <!-- Piso -->
-            <Frame BorderColor="#CFCFCF"
-                   CornerRadius="15"
-                   Padding="15"
-                   HasShadow="False">
+            <!-- Lista de pisos: una tarjeta por piso, apiladas verticalmente -->
+            <CollectionView ItemsSource="{Binding PisosUI}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Piso">
+                        <Border Stroke="#E3E3E3"
+                                StrokeThickness="1"
+                                StrokeShape="RoundRectangle 12"
+                                BackgroundColor="White"
+                                Padding="16"
+                                Margin="0,0,0,14">
+                            <VerticalStackLayout Spacing="12">
 
-                <VerticalStackLayout Spacing="15">
+                                <Label Text="{Binding Nombre}"
+                                       FontAttributes="Bold"
+                                       FontSize="15"
+                                       TextColor="#5B4FE9" />
 
-                    <Label Text="Piso"
-                           FontSize="18"
-                           FontAttributes="Bold"/>
+                                <!-- Grilla de áreas: wrap = nunca se pierde nada fuera de pantalla -->
+                                <FlexLayout BindableLayout.ItemsSource="{Binding Areas}"
+                                            Wrap="Wrap"
+                                            Direction="Row"
+                                            JustifyContent="Start"
+                                            AlignItems="Start">
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate x:DataType="model:Area">
+                                            <Border StrokeShape="RoundRectangle 10"
+                                                    Stroke="#D8D3F5"
+                                                    BackgroundColor="#F5F3FF"
+                                                    WidthRequest="50"
+                                                    HeightRequest="50"
+                                                    Margin="0,0,10,10" />
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+                                </FlexLayout>
 
-                    <!-- Botón para agregar Área/Alarma -->
-                    <Frame WidthRequest="80"
-                           HeightRequest="80"
-                           BorderColor="#5A5AFF"
-                           CornerRadius="12"
-                           HasShadow="False"
-                           Padding="0"
-                           HorizontalOptions="Start">
+                                <!-- Cuadrado (+) para agregar área: siempre visible, en su propia línea -->
+                                <Border StrokeShape="RoundRectangle 10"
+                                        Stroke="#5B4FE9"
+                                        StrokeDashArray="4,3"
+                                        StrokeThickness="1.5"
+                                        BackgroundColor="Transparent"
+                                        WidthRequest="50"
+                                        HeightRequest="50"
+                                        HorizontalOptions="Start">
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding Source={x:Reference page}, Path=BindingContext.CrearAreaCommand}"
+                                            CommandParameter="{Binding .}" />
+                                    </Border.GestureRecognizers>
+                                    <Label Text="+"
+                                           FontSize="22"
+                                           TextColor="#5B4FE9"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center" />
+                                </Border>
 
-                        <Button Text="+"
-                                FontSize="34"
-                                BackgroundColor="Transparent"
-                                BorderWidth="0"
-                                CornerRadius="12"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
-                    </Frame>
-
-                </VerticalStackLayout>
-
-            </Frame>
-
-            <!-- Botón para agregar un nuevo piso -->
-            <Button Text="+"
-                    FontSize="32"
-                    HeightRequest="70"
-                    BackgroundColor="Transparent"
-                    BorderColor="#5A5AFF"
-                    BorderWidth="2"
-                    CornerRadius="15"/>
+            <!-- Rectángulo punteado para crear un piso nuevo -->
+            <Border Stroke="#5B4FE9"
+                    StrokeDashArray="4,3"
+                    StrokeThickness="1.5"
+                    StrokeShape="RoundRectangle 12"
+                    Padding="16">
+                <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                    <Entry Text="{Binding NombrePiso}"
+                           Placeholder="Nombre del piso"
+                           WidthRequest="200"
+                           VerticalOptions="Center" />
+                    <Border StrokeShape="RoundRectangle 22"
+                            BackgroundColor="#5B4FE9"
+                            WidthRequest="45"
+                            HeightRequest="45">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CrearPisoCommand}" />
+                        </Border.GestureRecognizers>
+                        <Label Text="+"
+                               FontSize="20"
+                               TextColor="White"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                    </Border>
+                </HorizontalStackLayout>
+            </Border>
 
         </VerticalStackLayout>
-
     </ScrollView>
 
 </ContentPage>
