@@ -14,12 +14,7 @@ namespace MAUI_AlarmasQR._Model.AlarmaModel
         {
             this.Nombre = Nombre;
             this.Funciona = false;
-            this.NotaAdicional = String.Empty;
-        }
-
-        public bool checkear()
-        {
-            return !this.Funciona;
+            this.NotaAdicional = string.Empty;
         }
     }
 }

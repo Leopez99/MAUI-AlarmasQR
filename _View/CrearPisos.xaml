@@ -26,7 +26,7 @@
             <!-- Lista de pisos: una tarjeta por piso, apiladas verticalmente -->
             <CollectionView ItemsSource="{Binding PisosUI}">
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="model:Piso">
+                    <DataTemplate x:DataType="vm:PisoViewModel">
                         <Border Stroke="#E3E3E3"
                                 StrokeThickness="1"
                                 StrokeShape="RoundRectangle 12"

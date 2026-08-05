@@ -13,7 +13,8 @@ namespace MAUI_AlarmasQR._ViewModel
     {
         public Cliente cliente { get; set; }
 
-        public ObservableCollection<Piso> PisosUI { get; } = new();
+        // Ahora la UI trabaja con wrappers, no con el modelo directo
+        public ObservableCollection<PisoViewModel> PisosUI { get; } = new();
 
         [ObservableProperty]
         public partial string NombrePiso { get; set; } = string.Empty;
@@ -24,7 +25,8 @@ namespace MAUI_AlarmasQR._ViewModel
 
             foreach (Piso pisoDeCl in this.cliente.Pisos)
             {
-                PisosUI.Add(pisoDeCl);
+                // Se envuelve cada piso del modelo: el modelo no cambia (sigue List<>)
+                PisosUI.Add(new PisoViewModel(pisoDeCl));
             }
         }
 
@@ -36,20 +38,25 @@ namespace MAUI_AlarmasQR._ViewModel
 
             Piso nuevoPiso = new Piso(NombrePiso);
 
+            // 1) el modelo guarda el dato
             cliente.Pisos.Add(nuevoPiso);
-            PisosUI.Add(nuevoPiso);
+
+            // 2) la UI recibe el wrapper (que apunta al mismo piso)
+            PisosUI.Add(new PisoViewModel(nuevoPiso));
 
             NombrePiso = string.Empty;
         }
 
         [RelayCommand]
-        private void CrearArea(Piso piso)
+        private void CrearArea(PisoViewModel piso)
         {
             if (piso is null)
                 return;
 
             var nuevaArea = new Area($"Área {piso.Areas.Count + 1}");
-            piso.Areas.Add(nuevaArea); // al ser ObservableCollection, el CollectionView se actualiza solo
+
+            // El wrapper sincroniza modelo + UI en un solo lugar
+            piso.AgregarArea(nuevaArea);
         }
     }
 }
